@@ -172,28 +172,27 @@ export default class Game {
 
     rotateBlocks(clockwise = true) {
         const blocks = this.activePiece.blocks;
-        const length = blocks.length
-
-        const x = Math.floor(length / 2); 
+        const length = blocks.length;
+        const x = Math.floor(length / 2);
         const y = length - 1;
-
+    
         for (let i = 0; i < x; i++) {
             for (let j = i; j < y - i; j++) {
-                    const temp = blocks[i][j];
-
-                   if (clockwise) {
+                const temp = blocks[i][j];
+                
+                if (clockwise) {
                     blocks[i][j] = blocks[y - j][i];
                     blocks[y - j][i] = blocks[y - i][y - j];
-                    blocks[y - i][y - j] = blocks[j][y - i]
+                    blocks[y - i][y - j] = blocks[j][y - i];
                     blocks[j][y - i] = temp;
-                   } else {
+                } else {
                     blocks[i][j] = blocks[j][y - i];
                     blocks[j][y - i] = blocks[y - i][y - j];
-                    blocks[y - i][y - j] = blocks[j][i]
+                    blocks[y - i][y - j] = blocks[y - j][i];
                     blocks[y - j][i] = temp;
-                   }
                 }
-             }
+            }
+        }
     }
     
     hasCollision() {
